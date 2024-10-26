@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.0 on win32)" generated="2024-10-26T11:09:46.073660" rpa="false" schemaversion="5">
+<suite id="s1" name="Assignment1" source="c:\Users\Administrator\Documents\LionAPI\Assignment1.robot">
+<test id="s1-t1" name="Single User" line="10">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-10-26T11:09:46.459761" level="INFO">Creating Session using : alias=Session, url=https://reqres.in/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>Session</arg>
+<arg>${BASE_URL}</arg>
+<arg>disable_warnings=1</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-10-26T11:09:46.459267" elapsed="0.002603"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-10-26T11:09:46.562987" level="INFO">GET Request : url=https://reqres.in/api/users/2 
+ path_url=/api/users/2 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-10-26T11:09:46.563302" level="INFO">GET Response : url=https://reqres.in/api/users/2 
+ status=200, reason=OK 
+ headers={'Date': 'Sat, 26 Oct 2024 04:09:45 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1729181555&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=NdvVuKuh7ZfC84uq1%2B5Ezr%2BIZ7CzP2fszXIFJfTBQSU%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1729181555&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=NdvVuKuh7ZfC84uq1%2B5Ezr%2BIZ7CzP2fszXIFJfTBQSU%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"118-pbdwwFo9SKNhD3Lx5iHJyngpq00"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '2769', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '8d8797baab60a08b-SIN', 'Content-Encoding': 'gzip'} 
+ body={"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg time="2024-10-26T11:09:46.563531" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>Session</arg>
+<arg>${ENDPOINT}/${USER_ID}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-10-26T11:09:46.462594" elapsed="0.101031"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2024-10-26T11:09:46.564177" elapsed="0.000234"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-26T11:09:46.565508" level="INFO">{"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}}</msg>
+<arg>${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-26T11:09:46.564861" elapsed="0.000820"/>
+</kw>
+<status status="PASS" start="2024-10-26T11:09:46.458349" elapsed="0.107753"/>
+</test>
+<test id="s1-t2" name="Create User" line="16">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-10-26T11:09:46.568013" level="INFO">Creating Session using : alias=MySession, url=https://reqres.in/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>MySession</arg>
+<arg>${BASE_URL}</arg>
+<arg>disable_warnings=1</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-10-26T11:09:46.567667" elapsed="0.000658"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-10-26T11:09:46.569263" level="INFO">${body} = {'name': 'Ujang', 'job': 'QA'}</msg>
+<var>${body}</var>
+<arg>name=Ujang</arg>
+<arg>job=QA</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-10-26T11:09:46.568788" elapsed="0.000627"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-10-26T11:09:46.570218" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-10-26T11:09:46.569887" elapsed="0.000487"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-10-26T11:09:47.022775" level="INFO">POST Request : url=https://reqres.in/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '30'} 
+ body=b'{"name": "Ujang", "job": "QA"}' 
+ </msg>
+<msg time="2024-10-26T11:09:47.023000" level="INFO">POST Response : url=https://reqres.in/api/users 
+ status=201, reason=Created 
+ headers={'Date': 'Sat, 26 Oct 2024 04:09:45 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '77', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1729915785&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=UYhUX%2FS%2Fw5kQWiuIV6uHdBi0DYJXIDbCl09Kf19G5Kc%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1729915785&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=UYhUX%2FS%2Fw5kQWiuIV6uHdBi0DYJXIDbCl09Kf19G5Kc%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"4d-+ZOnzSybbzhk9UFSTmoEie9b4EE"', 'Via': '1.1 vegur', 'cf-cache-status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': '8d8797bb2af9cdd2-SIN'} 
+ body={"name":"Ujang","job":"QA","id":"905","createdAt":"2024-10-26T04:09:45.760Z"} 
+ </msg>
+<msg time="2024-10-26T11:09:47.023166" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>MySession</arg>
+<arg>${ENDPOINT}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-10-26T11:09:46.570796" elapsed="0.452440"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-10-26T11:09:47.024463" level="INFO">${status_code} = 201</msg>
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-10-26T11:09:47.023755" elapsed="0.000820"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${status_code}</arg>
+<arg>201</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-10-26T11:09:47.025021" elapsed="0.000311"/>
+</kw>
+<status status="PASS" start="2024-10-26T11:09:46.567094" elapsed="0.458683"/>
+</test>
+<doc>API Test GET Single User And POST Create User</doc>
+<status status="PASS" start="2024-10-26T11:09:46.077653" elapsed="0.949396"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Assignment1">Assignment1</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
